@@ -151,6 +151,8 @@ private constructor(private val usbManager: UsbManager,
                         // so some LUNs may not be inserted. Silently fail in this case and
                         // continue with next LUN
                         return@mapNotNull null
+                    } catch (ex: IOException) {
+                        return@mapNotNull null
                     }
 
                     val partitionTable = PartitionTableFactory.createPartitionTable(blockDevice)
